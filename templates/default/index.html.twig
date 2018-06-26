@@ -1,5 +1,9 @@
 {% include 'base.html.twig' %}
 
 {% block body %}
-    <a href="malito:info@itea.ua">info</a>
+    <h1>Contacts page</h1>
+
+    <p>{{ contacts.quote }}</p>
+
+    <a href="malito:{{ contacts.email }}">{{ contacts.email }}</a>
 {% endblock %}
