@@ -30,6 +30,6 @@ class DefaultController extends AbstractController
 
         $model = new ContactsPage('info@itea.ua', $this->messageGeneraror->generate());
 
-        return $this->render('default/index.html.twig',['contacts' => $model]);
+        return $this->render('default/contacts.html.twig',['contacts' => $model]);
     }
 }
