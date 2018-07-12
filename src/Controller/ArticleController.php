@@ -6,6 +6,9 @@ use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @author Kostenko Anton <kostenko.antony@gmail.com>
+ */
 class ArticleController extends AbstractController
 {
     /**

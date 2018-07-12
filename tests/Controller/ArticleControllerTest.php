@@ -4,6 +4,9 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @author Kostenko Anton <kostenko.antony@gmail.com>
+ */
 class ArticleControllerTest extends WebTestCase
 {
     public function testHomepageh1()
