@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Model\ContactsPage;
 use App\Service\MessageGenerator;
 use Psr\Log\LoggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,6 +20,9 @@ class DefaultController extends AbstractController
         $this->logger = $logger;
     }
 
+    /**
+     * @Route("/", name="app_index")
+     */
     public function index(): Response
     {
         return new Response('Symfony4 is great');
