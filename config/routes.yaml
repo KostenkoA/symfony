@@ -5,3 +5,7 @@ index:
 contacts:
     path: /contacts
     controller: App\Controller\DefaultController::contacts
+
+show:
+    path: /news/{slug}
+    controller: App\Controller\ArticleController::show
