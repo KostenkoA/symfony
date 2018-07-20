@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Quote;
 use App\Model\ContactsPage;
+use App\Repository\QuoteRepository;
 use App\Service\MessageGenerator;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,5 +37,30 @@ class DefaultController extends AbstractController
         $model = new ContactsPage('info@itea.ua', $this->messageGeneraror->generate());
 
         return $this->render('default/contacts.html.twig',['contacts' => $model]);
+    }
+
+    public function quotes()
+    {
+        $manager = $this->getDoctrine()->getManager();
+/*
+        $model = new Quote();
+        $model->setMessage('Looking for all topics');
+
+        $manager->persist($model);
+        $manager->flush();
+*/
+        //$model = $manager->getRepository(Quote::class)->getFirstQuote();
+
+        /**
+         * @var QuoteRepository $repository
+         */
+        $repository = $manager->getRepository(Quote::class);
+        $quote = $repository->getFirstQuote();
+        return new Response($quote);
+        
+        //TODO add password to the BD
+        //TODO new branch
+
+        //return new Response('Quote is created');
     }
 }

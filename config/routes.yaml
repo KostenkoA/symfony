@@ -9,3 +9,7 @@ contacts:
 show:
     path: /news/{slug}
     controller: App\Controller\ArticleController::show
+
+quotes:
+    path: /quotes
+    controller: App\Controller\DefaultController::quotes
