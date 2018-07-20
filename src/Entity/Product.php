@@ -31,6 +31,16 @@ class Product
      */
     private $type_id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $comment;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $description;
+
     public function getId()
     {
         return $this->id;
@@ -68,6 +78,30 @@ class Product
     public function setTypeId(int $type_id): self
     {
         $this->type_id = $type_id;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

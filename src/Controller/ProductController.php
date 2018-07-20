@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,9 +18,11 @@ class ProductController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
 
         $product = new Product();
-        $product->setName('Nokia');
-        $product->setPrice(500);
-        $product->setTypeId(11);
+        $product->setName('Meizu');
+        $product->setPrice(2500);
+        $product->setTypeId(56);
+        $product->setComment('Nice choice!');
+        $product->setDescription('M6 3/32gb');
 
         $entityManager->persist($product);
 
@@ -76,20 +79,27 @@ class ProductController extends Controller
 
     /**
      * @return Response
-     * @Route ("/show")
+     * @Route ("/showAll")
+     * @var ProductRepository $repository
      */
     public function showAll()
-    {
+    {/*
         $minPrice = 1000;
 
-        $products = $this->getDoctrine()
-            ->getRepository(Product::class)
-            ->findAllGreaterThanPrice($minPrice);
+
+        $repository = $manager->getRepository(Product::class);
+        $products = $repository->findAllGreaterThanPrice($minPrice);
         /*
         $product = $this->getDoctrine()
             ->getRepository(Product::class)
             ->findAll();
         */
-        return  Response::json($products);
+
+        $manager = $this->getDoctrine()->getManager();
+        $model = $manager->getRepository(Product::class)->findAll();
+        dump($model);die;
+        return  $this->render('product/dbProduct.html.twig', [
+            'products' => $model
+        ]);
     }
 }

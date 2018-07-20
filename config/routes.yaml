@@ -9,3 +9,7 @@ contacts:
 show:
     path: /news/{slug}
     controller: App\Controller\ArticleController::show
+
+showAll:
+    path: /showAll
+    controller: App\Controller\ProductRepository::showAll
