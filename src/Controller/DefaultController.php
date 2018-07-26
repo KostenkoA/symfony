@@ -57,10 +57,10 @@ class DefaultController extends AbstractController
         $repository = $manager->getRepository(Quote::class);
         $quote = $repository->getFirstQuote();
         return new Response($quote);
-        
-        //TODO add password to the BD
-        //TODO new branch
+
+
 
         //return new Response('Quote is created');
     }
 }
+
