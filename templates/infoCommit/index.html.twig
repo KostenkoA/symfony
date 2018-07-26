@@ -1,0 +1,16 @@
+{% block body %}
+    <p><span>Total commits: {{ count }}</span></p>
+    {% for commit in commits %}
+        <h1>Commit:</h1>
+        <dl>
+            <dt><b>Message:</b></dt>
+            <dd>{{ commit.message|e }}</dd>
+
+            <dt><b>Author:</b></dt>
+            <dd>{{ commit.author|e }}</dd>
+
+            <dt><b>Hash:</b></dt>
+            <dd>{{ commit.hash|e }}</dd>
+       </dl>
+    {% endfor %}
+{% endblock %}

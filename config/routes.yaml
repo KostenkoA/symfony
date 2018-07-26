@@ -13,3 +13,9 @@ show:
 showAll:
     path: /showAll
     controller: App\Controller\ProductRepository::showAll
+
+commit:
+    path: /infoCommit/{nameAndRepo}
+    requirements:
+        nameAndRepo: .+
+    controller: App\Controller\InfoCommitController::index
