@@ -18,4 +18,4 @@ commit:
     path: /infoCommit/{nameAndRepo}
     requirements:
         nameAndRepo: .+
-    controller: App\Repository\infoCommit\infoCommitRepository::getCommits
+    controller: App\Controller\InfoCommitController::gitCommitsList

@@ -2,28 +2,21 @@
 
 namespace App\Controller;
 
-use App\Repository\infoCommit\infoCommitRepository;
+use App\Repository\infoCommit\gitCommitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+
 
 
 class InfoCommitController extends AbstractController
 {
 
-    /**
-     * @return Response|void
-     */
-    public function index()
+    public function gitCommitsList(string $nameAndRepo)
     {
-        $model = new infoCommitRepository();
-        $model->getCommits();
-//TODO need fix that
-        return new Response(var_dump($model));
-/*
-        $model = infoCommitRepository::getCommits();
+        $gitCommitsList = new gitCommitRepository($nameAndRepo);
+        $commits = $gitCommitsList->getCollectionCommit();
+
         return $this->render('/infoCommit/index.html.twig', [
-            'commits' => $model,
+            'commits' => $commits,
         ]);
-*/
     }
 }

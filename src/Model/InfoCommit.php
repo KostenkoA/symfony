@@ -5,7 +5,6 @@ namespace App\Model;
 
 class InfoCommit
 {
-    private $number;
     private $message;
     private $author;
     private $hash;
@@ -13,28 +12,19 @@ class InfoCommit
     public static function fromArray(array $data)
     {
         return new self (
-            $data['number'] ?? 0,
+
             $data['hash'] ?? '',
             $data['author'] ?? '',
-            $data['message'] ?? ''
+             $data['message'] ?? ''
         );
     }
 
-    public function __construct(int $number, string $hash, string $author, string $message)
+    public function __construct(string $hash, string $author, string $message)
     {
-        $this->number = $number;
         $this->hash = $hash;
         $this->author = $author;
         $this->message = $message;
     }
-
-    /**
-     * @return int
-     */
-     public function getNumber(): int
-     {
-         return $this->number;
-     }
 
      /**
       * @return string
