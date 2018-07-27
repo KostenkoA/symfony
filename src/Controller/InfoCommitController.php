@@ -2,41 +2,28 @@
 
 namespace App\Controller;
 
-
-use App\Model\InfoCommit;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use App\Repository\infoCommit\infoCommitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class InfoCommitController extends AbstractController
 {
-    public function index(string $nameAndRepo)
+
+    /**
+     * @return Response|void
+     */
+    public function index()
     {
-        $client = new Client();
-        $endpoint = 'https://api.github.com/repos/' . $nameAndRepo . '/commits';
-
-        try {
-            $response = $client->request('GET', $endpoint);
-        } catch (RequestException $e) {
-            if ($e->getResponse()->getStatusCode() === 404) {
-                return 'Something went wrong!';
-            }
-        }
-        $body = $response->getBody();
-        $bodyArray = \json_decode($body, true);
-
-        for ($i = 0; $i < count($bodyArray); $i++) {
-            $model[] = InfoCommit::fromArray([
-                'number' => $i,
-                'hash' => \substr($bodyArray[$i]['sha'],0,7),
-                'author' => $bodyArray[$i]['commit']['author']['name'],
-                'message' => $bodyArray[$i]['commit']['message']
-            ]);
-        }
-
+        $model = new infoCommitRepository();
+        $model->getCommits();
+//TODO need fix that
+        return new Response(var_dump($model));
+/*
+        $model = infoCommitRepository::getCommits();
         return $this->render('/infoCommit/index.html.twig', [
             'commits' => $model,
-            'count' => \count($model)
         ]);
+*/
     }
 }
