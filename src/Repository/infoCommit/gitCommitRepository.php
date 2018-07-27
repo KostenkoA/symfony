@@ -6,22 +6,23 @@ use App\Model\InfoCommit;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
-class gitCommitRepository
+class gitCommitRepository implements RepositoryInfoInterface
 {
-    public $collectionCommit;
+    private $nameAndRepo;
 
     public function __construct($nameAndRepo)
     {
-        $this->collectionCommit = $this->getCommits($nameAndRepo);
+        $this->nameAndRepo = $nameAndRepo;
     }
-    private function getCommits(string $nameAndRepo)
+
+    public function getCommits(): ?array
     {
         $client = new Client();
         $mainUri = 'https://api.github.com/repos';
         $endpoint = 'commits';
 
         try {
-            $response = $client->request('GET', \sprintf('%s/%s/%s', $mainUri, $nameAndRepo,
+            $response = $client->request('GET', \sprintf('%s/%s/%s', $mainUri, $this->nameAndRepo,
                 $endpoint));
         } catch (RequestException $e) {
             if ($e->getResponse()->getStatusCode() === 404) {
@@ -42,11 +43,4 @@ class gitCommitRepository
         return $collectionCommit;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCollectionCommit()
-    {
-        return $this->collectionCommit;
-    }
 }
