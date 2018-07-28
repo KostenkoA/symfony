@@ -5,5 +5,9 @@ namespace App\Repository\infoCommit;
 
 interface RepositoryInfoInterface
 {
-    public function getCommits(): ?array;
+    /**
+     * @param string $nameAndRepo
+     * @return array|null
+     */
+    public function getCommits(string $nameAndRepo): ?array;
 }

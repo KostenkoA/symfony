@@ -8,21 +8,19 @@ use GuzzleHttp\Exception\RequestException;
 
 class gitCommitRepository implements RepositoryInfoInterface
 {
-    private $nameAndRepo;
-
-    public function __construct($nameAndRepo)
-    {
-        $this->nameAndRepo = $nameAndRepo;
-    }
-
-    public function getCommits(): ?array
+    /**
+     * @param string $nameAndRepo
+     * @return array|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCommits(string $nameAndRepo): ?array
     {
         $client = new Client();
         $mainUri = 'https://api.github.com/repos';
         $endpoint = 'commits';
 
         try {
-            $response = $client->request('GET', \sprintf('%s/%s/%s', $mainUri, $this->nameAndRepo,
+            $response = $client->request('GET', \sprintf('%s/%s/%s', $mainUri, $nameAndRepo,
                 $endpoint));
         } catch (RequestException $e) {
             if ($e->getResponse()->getStatusCode() === 404) {
