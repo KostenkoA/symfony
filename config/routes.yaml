@@ -1,15 +1,15 @@
 index:
     path: /
-    controller: App\Controller\DefaultController::index
+    controller: App\Controller\Web\DefaultController::index
 
 contacts:
     path: /contacts
-    controller: App\Controller\DefaultController::contacts
+    controller: App\Controller\Web\DefaultController::contacts
 
 show:
     path: /news/{slug}
-    controller: App\Controller\ArticleController::show
+    controller: App\Controller\Web\ArticleController::show
 
 quotes:
     path: /quotes
-    controller: App\Controller\DefaultController::quotes
+    controller: App\Controller\Web\DefaultController::quotes
